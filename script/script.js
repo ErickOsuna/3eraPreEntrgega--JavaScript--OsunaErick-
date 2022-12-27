@@ -1,478 +1,397 @@
-// Creación de la Marca
+// EXCHANGE - COTIZACIÓN - INICIO
 
-const MARCA = "CASA DE CAMBIO SIGLO XXI"
-const BIENVENIDA = ("¡Bienvenido a la " + MARCA + "!");
-
-console.log(MARCA);
-alert(MARCA);
-
-
-
-
-// Declaración de Variables y Constantes
-
-let cantidadDivisaCompra = 0;
-
-const IMPUESTO_PAIS = 0.30;
-const IMPUESTO_GANANCIA = 0.45;
-
-let inicio = 0;
-
-let flecha = "--> ";
-let espacio = ", ";
-
-let fecha = new Date();
-
-
-
-
-// Creación de Clase Constructora de Objeto (Cliente)
-
-class Cliente {
-    constructor(nombre, apellido, correo) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.correo = correo;
-    }
-    toString() {
-        return this.nombre + " " + this.apellido;
-    }
-}
-
-
-
-
-// Ingreso de Datos del CLIENTE
-
-let clienteUno = new Cliente(prompt("Ingrese Su Nombre").toLocaleUpperCase(), prompt("Ingrese Su Apellido").toLocaleUpperCase(), prompt("Ingrese Su Correo Electrónico").toLocaleUpperCase());
-
-while ((clienteUno.nombre == "") || (clienteUno.apellido == "") || (clienteUno.correo == "") || ((clienteUno.correo).search("@") == -1)) {
-
-    console.log("Debes ingresar todos los campos solicitados");
-    alert("Debes ingresar todos los campos solicitados");
-
-    clienteUno = new Cliente(prompt("Ingrese Su Nombre").toLocaleUpperCase(), prompt("Ingrese Su Apellido").toLocaleUpperCase(), prompt("Ingrese Su Correo Electrónico").toLocaleUpperCase());
-}
-
-
-
-
-// Bienvenida al Cliente
-
-console.log(BIENVENIDA + " " + clienteUno.toString());
-alert(BIENVENIDA + " " + clienteUno.toString());
-
-
-
-
-
-// Creación de Array (Lista de Operaciones)
-
-let listaOperaciones = ["1.- Consultar Precios", "2.- Comprar", "3.- Vender", "4.- Salir"];
-
-
-
-
-
-// Selección de la Operación a realizar
-
-console.log(); ("En nuestra " + MARCA + ", " + "podrás realizar diferentes operaciones: " + "\n\n" + listaOperaciones[0] + "\n" + listaOperaciones[1] + "\n" + listaOperaciones[2]);
-alert("En nuestra " + MARCA + ", " + "podrás realizar diferentes operaciones: " + "\n\n" + listaOperaciones[0] + "\n" + listaOperaciones[1] + "\n" + listaOperaciones[2]);
-
-
-
-
-
-// Creación de Array con Objeto (Divisas)
+// Creación del Constructor del Objeto DIVISA
 
 class Divisa {
-    constructor(simbolo, nombre, precioCompra, precioVenta) {
+    constructor(simbolo, nombre, precioCompra, precioVenta, stockDivisa) {
         this.simbolo = simbolo;
         this.nombre = nombre;
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
+        this.stockDivisa = stockDivisa;
     }
     toString() {
         return this.nombre;
     }
 }
+
+// Declaración del Vector de las diferentes Divisas
 
 let listaDivisas = [];
 
-listaDivisas.push(new Divisa("USD $", "Dólar", 172.50, 181));
-listaDivisas.push(new Divisa("EUR €", "Euro", 170.30, 182.70));
-listaDivisas.push(new Divisa("BRL R$", "Real", 32.10, 39.60));
-listaDivisas.push(new Divisa("CLP $", "Peso Chileno", 0.1810, 0.2158));
-listaDivisas.push(new Divisa("$U", "Peso Uruguayo", 3.76, 4.06));
-listaDivisas.push(new Divisa("CHF Fr", "Franco Suizo", 150.00, 160.00));
-listaDivisas.push(new Divisa("GBP £", "Libra Esterlina", 197.90, 216.00));
-listaDivisas.push(new Divisa("PEN S/", "Sol Peruano", 48.00, 58.00));
+// Creación de Objetos con el Constructor DIVISA dentro del Vector listaDivisas []
 
+listaDivisas.push(new Divisa("USD $", "Dólar", 174.50, 182.50, 20000));
+listaDivisas.push(new Divisa("EUR €", "Euro", 185.26, 185.91, 15000));
+listaDivisas.push(new Divisa("BRL R$", "Real", 33.71, 33.74, 50000));
+listaDivisas.push(new Divisa("CLP $", "Peso Chileno", 19.97, 20.04, 100000));
+listaDivisas.push(new Divisa("$U", "Peso Uruguayo", 4.55, 4.55, 60000));
+listaDivisas.push(new Divisa("CHF Fr", "Franco Suizo", 188.56, 188.63, 10000));
+listaDivisas.push(new Divisa("GBP £", "Libra Esterlina", 210.34, 211.1, 5000));
+listaDivisas.push(new Divisa("PEN S/", "Sol Peruano", 3.80, 3.84, 150000));
+listaDivisas.push(new Divisa("AR$", "Pesos Argentinos", 1, 1, 5000000));
 
+//Creación de variables para los nodos del DOM
 
+let primerDivisa = document.querySelectorAll(".primerDivisa");
+let segundaDivisa = document.querySelectorAll(".segundaDivisa");
+let tercerDivisa = document.querySelectorAll(".tercerDivisa");
+let cuartaDivisa = document.querySelectorAll(".cuartaDivisa");
+let quintaDivisa = document.querySelectorAll(".quintaDivisa");
+let sextaDivisa = document.querySelectorAll(".sextaDivisa");
+let septimaDivisa = document.querySelectorAll(".septimaDivisa");
+let octavaDivisa = document.querySelectorAll(".octavaDivisa");
 
+// Asignación de elementos del Objeto a la sección Exchange
 
+primerDivisa[0].innerText = listaDivisas[0].simbolo;
+primerDivisa[1].innerText = listaDivisas[0].nombre;
+primerDivisa[2].innerText = listaDivisas[0].precioCompra;
+primerDivisa[3].innerText = listaDivisas[0].precioVenta;
 
-// Creación de Funciones sin Parámetros
+segundaDivisa[0].innerText = listaDivisas[1].simbolo;
+segundaDivisa[1].innerText = listaDivisas[1].nombre;
+segundaDivisa[2].innerText = listaDivisas[1].precioCompra;
+segundaDivisa[3].innerText = listaDivisas[1].precioVenta;
 
-// MEJORADO
-function elegirOperacion() {
+tercerDivisa[0].innerText = listaDivisas[2].simbolo;
+tercerDivisa[1].innerText = listaDivisas[2].nombre;
+tercerDivisa[2].innerText = listaDivisas[2].precioCompra;
+tercerDivisa[3].innerText = listaDivisas[2].precioVenta;
 
-    let operacion = parseInt(prompt("¿Qué deseas hacer? (Ingresa el número de la opción que deseas realizar):" + "\n\n" + (listaOperaciones[0]) + "\n" + (listaOperaciones[1]) + "\n" + (listaOperaciones[2]) + "\n" + (listaOperaciones[3]) + "\n"));
+cuartaDivisa[0].innerText = listaDivisas[3].simbolo;
+cuartaDivisa[1].innerText = listaDivisas[3].nombre;
+cuartaDivisa[2].innerText = listaDivisas[3].precioCompra;
+cuartaDivisa[3].innerText = listaDivisas[3].precioVenta;
 
-    switch (operacion) {
-        case 1:
+quintaDivisa[0].innerText = listaDivisas[4].simbolo;
+quintaDivisa[1].innerText = listaDivisas[4].nombre;
+quintaDivisa[2].innerText = listaDivisas[4].precioCompra;
+quintaDivisa[3].innerText = listaDivisas[4].precioVenta;
 
-            console.log("¡Quieres Consultar el Precio de una divisa!");
-            alert("¡Quieres Consultar el Precio de una divisa!");
-            consultaGeneral();
-            volver();
+sextaDivisa[0].innerText = listaDivisas[5].simbolo;
+sextaDivisa[1].innerText = listaDivisas[5].nombre;
+sextaDivisa[2].innerText = listaDivisas[5].precioCompra;
+sextaDivisa[3].innerText = listaDivisas[5].precioVenta;
 
-            break;
-        case 2:
+septimaDivisa[0].innerText = listaDivisas[6].simbolo;
+septimaDivisa[1].innerText = listaDivisas[6].nombre;
+septimaDivisa[2].innerText = listaDivisas[6].precioCompra;
+septimaDivisa[3].innerText = listaDivisas[6].precioVenta;
 
-            consulta("Compra");
-            compra();
-            volver();
+octavaDivisa[0].innerText = listaDivisas[7].simbolo;
+octavaDivisa[1].innerText = listaDivisas[7].nombre;
+octavaDivisa[2].innerText = listaDivisas[7].precioCompra;
+octavaDivisa[3].innerText = listaDivisas[7].precioVenta;
 
-            break;
-        case 3:
+// EXCHANGE - COTIZACIÓN - FIN
 
-            consulta("Venta");
-            venta();
-            volver();
+// ---------------------------------------------------------------------
 
-            break;
-        case 4:
+// CAREERS - TRABAJA CON NOSOTROS - INICIO
 
-            volver();
+let fecha = new Date();
 
-            break;
-
-        default:
-            console.log("Solo puedes elegir un número entre 1 y 4");
-            alert("Solo puedes elegir un número entre 1 y 4");
-            elegirOperacion();
-            break;
-    }
-}
-
-// MEJORADO
-function consultaGeneral() {
-    console.log("El Precio Actual de las divisas es: ", "\n", fecha.toUTCString(), listaDivisas[0], "\n", listaDivisas[1], "\n", listaDivisas[2], "\n", listaDivisas[3], "\n", listaDivisas[4], "\n", listaDivisas[5], "\n", listaDivisas[6], "\n", listaDivisas[7]);
-
-    alert("El Precio Actual de las divisas es: " + "\n\n" + fecha.toUTCString() + "\n\n" + flecha + listaDivisas[0].simbolo + espacio + listaDivisas[0].nombre + espacio + " Precio para la Compra: " + listaDivisas[0].precioCompra + espacio + " Precio para la Venta: " + listaDivisas[0].precioVenta + "\n\n" + flecha + listaDivisas[1].simbolo + espacio + listaDivisas[1].nombre + espacio + " Precio para la Compra: " + listaDivisas[1].precioCompra + espacio + " Precio para la Venta: " + listaDivisas[1].precioVenta + "\n\n" + flecha + listaDivisas[2].simbolo + espacio + listaDivisas[2].nombre + espacio + " Precio para la Compra: " + listaDivisas[2].precioCompra + espacio + " Precio para la Venta: " + listaDivisas[2].precioVenta + "\n\n" + flecha + listaDivisas[3].simbolo + espacio + listaDivisas[3].nombre + espacio + " Precio para la Compra: " + listaDivisas[3].precioCompra + espacio + " Precio para la Venta: " + listaDivisas[3].precioVenta + "\n\n" + flecha + listaDivisas[4].simbolo + espacio + listaDivisas[4].nombre + espacio + " Precio para la Compra: " + listaDivisas[4].precioCompra + espacio + " Precio para la Venta: " + listaDivisas[4].precioVenta + "\n\n" + flecha + listaDivisas[5].simbolo + espacio + listaDivisas[5].nombre + espacio + " Precio para la Compra: " + listaDivisas[5].precioCompra + espacio + " Precio para la Venta: " + listaDivisas[5].precioVenta + "\n\n" + flecha + listaDivisas[6].simbolo + espacio + listaDivisas[6].nombre + espacio + " Precio para la Compra: " + listaDivisas[6].precioCompra + espacio + " Precio para la Venta: " + listaDivisas[6].precioVenta + "\n\n" + flecha + listaDivisas[7].simbolo + espacio + listaDivisas[7].nombre + espacio + " Precio para la Compra: " + listaDivisas[7].precioCompra + espacio + " Precio para la Venta: " + listaDivisas[7].precioVenta);
-}
-
-let seleccionDivisaCompra = 0;
-
-// LE FALTA LA ARROW FUNCTION
-function compra() {
-
-seleccionDivisaCompra = parseInt(prompt("¿Qué tipo de Divisa deseas comprar? (Ingresa el número de la opción correspondiente):" + "\n\n" + "1.- " + (listaDivisas[0].nombre) + "\n" + "2.- " + (listaDivisas[1].nombre) + "\n" + "3.- " + (listaDivisas[2].nombre) + "\n" + "4.- " + (listaDivisas[3].nombre) + "\n" + "5.- " + (listaDivisas[4].nombre) + "\n" + "6.- " + (listaDivisas[5].nombre) + "\n" + "7.- " + (listaDivisas[6].nombre) + "\n" + "8.- " + (listaDivisas[7].nombre) + "\n" + "9.- Volver al Inicio"));
-
-    switch (seleccionDivisaCompra) {
-        case 1:
-
-            calcularCambioCompra("Dólares", listaDivisas[0].precioCompra);
-            break;
-
-        case 2:
-            calcularCambioCompra("Euros", listaDivisas[1].precioCompra);
-            break;
-
-        case 3:
-            calcularCambioCompra("Reales", listaDivisas[2].precioCompra);
-            break;
-
-        case 4:
-            calcularCambioCompra("Pesos Chilenos", listaDivisas[3].precioCompra);
-            break;
-
-        case 5:
-            calcularCambioCompra("Pesos Uruguayos", listaDivisas[4].precioCompra);
-            break;
-
-        case 6:
-            calcularCambioCompra("Franco Suizo", listaDivisas[5].precioCompra);
-            break;
-
-        case 7:
-            calcularCambioCompra("Libra Esterlina", listaDivisas[6].precioCompra);
-            break;
-
-        case 8:
-            calcularCambioCompra("Sol Peruano", listaDivisas[7].precioCompra);
-            break;
-
-        case 9:
-            break;
-
-        default:
-            console.log("Solo puedes elegir un número entre 1 y 9");
-            alert("Solo puedes elegir un número entre 1 y 9");
-            compra();
-            break;
-    }
-}
-
-// MEJORADO
-function venta() {
-
-    let seleccionDivisaVenta = parseInt(prompt("¿Qué tipo de Divisa deseas vender? (Ingresa el número de la opción correspondiente):" + "\n\n" + "1.- " + (listaDivisas[0].nombre) + "\n" + "2.- " + (listaDivisas[1].nombre) + "\n" + "3.- " + (listaDivisas[2].nombre) + "\n" + "4.- " + (listaDivisas[3].nombre) + "\n" + "5.- " + (listaDivisas[4].nombre) + "\n" + "6.- " + (listaDivisas[5].nombre) + "\n" + "7.- " + (listaDivisas[6].nombre) + "\n" + "8.- " + (listaDivisas[7].nombre) + "\n" + "9.- Volver al Inicio"));
-
-    switch (seleccionDivisaVenta) {
-        case 1:
-
-            calcularCambioVenta("Dólares", (listaDivisas[0].precioVenta));
-            break;
-
-        case 2:
-            calcularCambioVenta("Euros", (listaDivisas[1].precioVenta));
-            break;
-
-        case 3:
-            calcularCambioVenta("Reales", (listaDivisas[2].precioVenta));
-            break;
-
-        case 4:
-            calcularCambioVenta("Pesos Chilenos", (listaDivisas[3].precioVenta));
-            break;
-
-        case 5:
-            calcularCambioVenta("Pesos Uruguayos", (listaDivisas[4].precioVenta));
-            break;
-
-        case 6:
-            calcularCambioVenta("Franco Suizo", (listaDivisas[5].precioVenta));
-            break;
-
-        case 7:
-            calcularCambioVenta("Libra Esterlina", (listaDivisas[6].precioVenta));
-            break;
-
-        case 8:
-            calcularCambioVenta("Sol Peruano", (listaDivisas[7].precioVenta));
-            break;
-
-        case 9:
-            break;
-
-        default:
-            console.log("Solo puedes elegir un número entre 1 y 9");
-            alert("Solo puedes elegir un número entre 1 y 9");
-            compra();
-            break;
-    }
-}
-
-// MEJORADO
-function volver() {
-
-    inicio = parseInt(prompt("¿Qué deseas hacer? (Ingresa el número de la opción correspondiente): " + "\n\n" + (("1.- Volver al Inicio").toString()) + "\n" + (("2.- Salir\n".toString()))));
-
-    switch (inicio) {
-        case 1:
-            break;
-
-        case 2:
-            break;
-
-        default:
-            console.log("Solo puedes elegir entre 1 y 2");
-            alert("Solo puedes elegir entre 1 y 2");
-            volver();
-            break;
-    }
-
-}
-
-// DEFINITIVO
-function salida() {
-    console.log("Gracias por preferir a " + MARCA + ". Será hasta una próxima ocasión. ¡Hasta Luego!");
-    alert("Gracias por preferir a " + MARCA + ". Será hasta una próxima ocasión. ¡Hasta Luego!");
-}
-
-
-
-
-// Creación de Array con Objeto (Stock de Divisas)
-
-class stockDivisa {
-    constructor(nombre, cantidad) {
+class DatosCareers {
+    constructor(nombre, apellido, correo, telefono) {
         this.nombre = nombre;
-        this.cantidad = cantidad;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.telefono = telefono;
     }
     toString() {
         return this.nombre;
     }
 }
 
-let stockDivisas = [];
+let formDatosCareers = document.querySelector("#formDatosCareers");
+let nombreDatosCareers = document.querySelector("#nombreDatosCareers");
+let apellidoDatosCareers = document.querySelector("#apellidoDatosCareers");
+let correoDatosCareers = document.querySelector("#correoDatosCareers");
+let telefonoDatosCareers = document.querySelector("#telefonoDatosCareers");
+let resumenDatosCareers = document.querySelector("#resumenDatosCareers");
 
-stockDivisas.push(new stockDivisa("Dólar", 20000));
-stockDivisas.push(new stockDivisa("Euro", 15000));
-stockDivisas.push(new stockDivisa("Real", 50000));
-stockDivisas.push(new stockDivisa("Peso Chileno", 100000));
-stockDivisas.push(new stockDivisa("Peso Uruguayo", 60000));
-stockDivisas.push(new stockDivisa("Franco Suizo", 10000));
-stockDivisas.push(new stockDivisa("Libra Esterlina", 5000));
-stockDivisas.push(new stockDivisa("Sol Peruano", 150000));
+// Guardando datos de formulario en el LocalStorage
 
+let postulante = JSON.parse(localStorage.getItem("Usuario")) ?? [];
 
+if (postulante.length > 0) {
 
+    resumenDatosCareers.innerText = ("\nMuchas gracias por contactarnos. Si tu perfil encaja con nuestra búsqueda, te estaremos contactando." + "\n\n" + "Fecha: " + fecha.toLocaleDateString() + "\n" + "Nombre: " + (postulante.nombre).toUpperCase() + "\n" + "Apellido: " + (postulante.apellido).toUpperCase() + "\n" + "Correo Electrónico: " + (postulante.correo).toUpperCase() + "\n" + "Número de Teléfono: " + (postulante.telefono));
+}
 
-// Creación de Funciones con Parámetros
+formDatosCareers.addEventListener("submit", (event) => {
 
-function consulta(nombreConsulta) {
+    event.preventDefault();
 
-    let dolarTasa = "";
-    let euroTasa = "";
-    let realTasa = "";
-    let pesoChilenoTasa = "";
-    let pesoUruguayoTasa = "";
-    let francoTasa = "";
-    let libraTasa = "";
-    let solTasa = "";
+    if ((nombreDatosCareers.value !== "") && (apellidoDatosCareers.value !== "") && (correoDatosCareers.value !== "") && (telefonoDatosCareers.value !== "")) {
 
-    let fecha = new Date();
-    let flecha = "--> ";
+        resumenDatosCareers.innerText = ("\nMuchas gracias por contactarnos. Si tu perfil encaja con nuestra búsqueda, te estaremos contactando." + "\n\n" + "Fecha: " + fecha.toLocaleDateString() + "\n" + "Nombre: " + (nombreDatosCareers.value).toUpperCase() + "\n" + "Apellido: " + (apellidoDatosCareers.value).toUpperCase() + "\n" + "Correo Electrónico: " + (correoDatosCareers.value).toUpperCase() + "\n" + "Número de Teléfono: " + (telefonoDatosCareers.value));
 
-    if (nombreConsulta === "Compra") {
+        let postulante = new DatosCareers(nombreDatosCareers.value, apellidoDatosCareers.value, correoDatosCareers.value, telefonoDatosCareers.value);
 
-        dolarTasa = listaDivisas[0].precioCompra;
-        euroTasa = listaDivisas[1].precioCompra;
-        realTasa = listaDivisas[2].precioCompra;
-        pesoChilenoTasa = listaDivisas[3].precioCompra;
-        pesoUruguayoTasa = listaDivisas[4].precioCompra;
-        francoTasa = listaDivisas[5].precioCompra;
-        libraTasa = listaDivisas[6].precioCompra;
-        solTasa = listaDivisas[7].precioCompra;
+        // Guardando datos de formulario en el LocalStorage
+
+        localStorage.setItem('Usuario', JSON.stringify(postulante));
+
+        nombreDatosCareers.focus();
+        formDatosCareers.reset();
 
     } else {
+        resumenDatosCareers.innerText = ("\nDebes introducir todos los datos correctamente.");
 
-        dolarTasa = listaDivisas[0].precioVenta;
-        euroTasa = listaDivisas[1].precioVenta;
-        realTasa = listaDivisas[2].precioVenta;
-        pesoChilenoTasa = listaDivisas[3].precioVenta;
-        pesoUruguayoTasa = listaDivisas[4].precioVenta;
-        francoTasa = listaDivisas[5].precioVenta;
-        libraTasa = listaDivisas[6].precioVenta;
-        solTasa = listaDivisas[7].precioVenta;
+        nombreDatosCareers.focus();
+        formDatosCareers.reset();
     }
 
-    console.log("El precio de las Divisas para la " + nombreConsulta + " es: " + "\n\n" + fecha.toUTCString() + "\n\n" + flecha + ("Dólar = " + dolarTasa.toString() + " AR $ por Dólar.") + "\n" + flecha + ("Euro = " + euroTasa.toString() + " AR $ por Euro.") + "\n" + flecha + ("Real = " + realTasa.toString() + " AR $ por Real.") + "\n" + flecha + ("Peso Chileno = " + pesoChilenoTasa.toString() + " AR $ por Peso Chileno.") + "\n" + flecha + ("Peso Uruguayo = " + pesoUruguayoTasa.toString() + " AR $ por Peso Uruguayo.") + "\n" + flecha + ("Franco = " + francoTasa.toString() + " AR $ por Franco.") + "\n" + flecha + ("Libra Esterlina = " + libraTasa.toString() + " AR $ por Libra Esterlina.") + "\n" + flecha + ("Sol = " + solTasa.toString() + " AR $ por Sol Peruano."));
+})
 
-    alert("El precio de las Divisas para la " + nombreConsulta + " es: " + "\n\n" + fecha.toUTCString() + "\n\n" + flecha + ("Dólar = " + dolarTasa.toString() + " AR $ por Dólar.") + "\n" + flecha + ("Euro = " + euroTasa.toString() + " AR $ por Euro.") + "\n" + flecha + ("Real = " + realTasa.toString() + " AR $ por Real.") + "\n" + flecha + ("Peso Chileno = " + pesoChilenoTasa.toString() + " AR $ por Peso Chileno.") + "\n" + flecha + ("Peso Uruguayo = " + pesoUruguayoTasa.toString() + " AR $ por Peso Uruguayo.") + "\n" + flecha + ("Franco = " + francoTasa.toString() + " AR $ por Franco.") + "\n" + flecha + ("Libra Esterlina = " + libraTasa.toString() + " AR $ por Libra Esterlina.") + "\n" + flecha + ("Sol = " + solTasa.toString() + " AR $ por Sol Peruano."));
+// CAREERS - TRABAJA CON NOSOTROS - FIN
 
+// --------------------------------------------------------------------
+
+// CURRENCY CONVERTER - CALCULADORA - INICIO
+
+// Elegir tipo de divisa para operacion
+
+let inputGroupSelect01 = document.querySelector("#inputGroupSelect01");
+inputGroupSelect01.classList.add("opciones");
+
+inputGroupSelect01.innerHTML += "<option class='dolarCalculadora'>Dólar</option>";
+inputGroupSelect01.innerHTML += "<option class='euroCalculadora'>Euro</option>";
+inputGroupSelect01.innerHTML += "<option class='realCalculadora'>Real</option>";
+inputGroupSelect01.innerHTML += "<option class='pesoChilenoCalculadora'>Peso Chileno</option>";
+inputGroupSelect01.innerHTML += "<option class='pesoUruguayoCalculadora'>Peso Uruguayo</option>";
+inputGroupSelect01.innerHTML += "<option class='francoCalculadora'>Franco Suizo</option>";
+inputGroupSelect01.innerHTML += "<option class='libraCalculadora'>Libra Esterlina</option>";
+inputGroupSelect01.innerHTML += "<option class='solCalculadora'>Sol Peruano</option>";
+
+let dolarCalculadora = document.querySelector(".dolarCalculadora");
+let euroCalculadora = document.querySelector(".euroCalculadora");
+let realCalculadora = document.querySelector(".realCalculadora");
+let pesoChilenoCalculadora = document.querySelector(".pesoChilenoCalculadora");
+let pesoUruguayoCalculadora = document.querySelector(".pesoUruguayoCalculadora");
+let francoCalculadora = document.querySelector(".francoCalculadora");
+let libraCalculadora = document.querySelector(".libraCalculadora");
+let solCalculadora = document.querySelector(".solCalculadora");
+let pesoArgentino = 0;
+
+dolarCalculadora.innerText = listaDivisas[0].nombre;
+euroCalculadora.innerText = listaDivisas[1].nombre;
+realCalculadora.innerText = listaDivisas[2].nombre;
+pesoChilenoCalculadora.innerText = listaDivisas[3].nombre;
+pesoUruguayoCalculadora.innerText = listaDivisas[4].nombre;
+francoCalculadora.innerText = listaDivisas[5].nombre;
+libraCalculadora.innerText = listaDivisas[6].nombre;
+solCalculadora.innerText = listaDivisas[7].nombre;
+pesoArgentinoCalculadora = listaDivisas[8].nombre;
+
+// Elegir tipo de operacion a realizar
+
+class Operacion {
+    constructor(tipo) {
+        this.tipo = tipo;
+    }
+    toString() {
+        return this.tipo;
+    }
 }
 
+let tipoOperacionArray = [];
+
+tipoOperacionArray.push(new Operacion("Compra"));
+tipoOperacionArray.push(new Operacion("Venta"));
 
 
-// FALTA ARREGLAR LA ARROW FUNCTION
-function calcularCambioCompra(nombreDivisa, tasaCambio) {
+let inputGroupSelect03 = document.querySelector("#inputGroupSelect03");
+inputGroupSelect03.classList.add("tipoOperacion");
 
-    do {
+inputGroupSelect03.innerHTML += "<option class='operacionCompra'></option>";
+inputGroupSelect03.innerHTML += "<option class='operacionVenta'></option>";
 
-        cantidadDivisaCompra = prompt("Ingrese la cantidad expresada en números de la Divisa que deseas comprar (Puedes usar decimales):");
+let operacionCompra = document.querySelector(".operacionCompra");
+let operacionVenta = document.querySelector(".operacionVenta");
 
-        if (isNaN(cantidadDivisaCompra)) {
-            console.log("Solo puedes Ingresar un número");
-            alert("Solo puedes Ingresar un número");
+operacionCompra.innerText = tipoOperacionArray[0].tipo;
+operacionVenta.innerText = tipoOperacionArray[1].tipo;
+
+let formCalculadora = document.querySelector("#formCalculadora");
+let cantidadDivisaCalcular = document.querySelector("#cantidadDivisaCalcular");
+
+const IMPUESTO_PAIS = 0.30;
+const IMPUESTO_GANANCIA = 0.45;
+
+function compra() {
+
+    let seleccionDivisa = inputGroupSelect01.value;
+
+    switch (seleccionDivisa) {
+        case "Dólar":
+            calcularCompra("Dólares", listaDivisas[0].precioCompra);
+            break;
+        case "Euro":
+            calcularCompra("Euros", listaDivisas[1].precioCompra);
+            break;
+        case "Real":
+            calcularCompra("Reales", listaDivisas[2].precioCompra);
+            break;
+        case "Peso Chileno":
+            calcularCompra("Pesos Chilenos", listaDivisas[3].precioCompra);
+            break;
+        case "Peso Uruguayo":
+            calcularCompra("Pesos Uruguayos", listaDivisas[4].precioCompra);
+            break;
+        case "Franco Suizo":
+            calcularCompra("Franco Suizo", listaDivisas[5].precioCompra);
+            break;
+        case "Libra Esterlina":
+            calcularCompra("Libra Esterlina", listaDivisas[6].precioCompra);
+            break;
+        case "Sol Peruano":
+            calcularCompra("Sol Peruano", listaDivisas[7].precioCompra);
+            break;
+    }
+}
+
+function venta() {
+
+    let seleccionDivisa = inputGroupSelect01.value;
+
+    switch (seleccionDivisa) {
+        case "Dólar":
+            calcularVenta("Dólares", (listaDivisas[0].precioVenta));
+            break;
+        case "Euro":
+            calcularVenta("Euros", (listaDivisas[1].precioVenta));
+            break;
+        case "Real":
+            calcularVenta("Reales", (listaDivisas[2].precioVenta));
+            break;
+        case "Peso Chileno":
+            calcularVenta("Pesos Chilenos", (listaDivisas[3].precioVenta));
+            break;
+        case "Peso Uruguayo":
+            calcularVenta("Pesos Uruguayos", (listaDivisas[4].precioVenta));
+            break;
+        case "Franco Suizo":
+            calcularVenta("Franco Suizo", (listaDivisas[5].precioVenta));
+            break;
+        case "Libra Esterlina":
+            calcularVenta("Libra Esterlina", (listaDivisas[6].precioVenta));
+            break;
+        case "Sol Peruano":
+            calcularVenta("Sol Peruano", (listaDivisas[7].precioVenta));
+            break;
+    }
+}
+
+function calcularCompra(nombreDivisa, tasaCambio) {
+
+    let subTotalCompra = cantidadDivisaCalcular.value * tasaCambio;
+    let subTotalPaisCompra = subTotalCompra * IMPUESTO_PAIS;
+    let subTotalGananciaCompra = subTotalCompra * IMPUESTO_GANANCIA;
+    let totalCompra = subTotalCompra + subTotalPaisCompra + subTotalGananciaCompra;
+
+    resumenCalculadora.innerText = ("\n Simulador de " + tipoOperacionArray[0].tipo + "\n\n Cantidad a comprar: " + cantidadDivisaCalcular.value + " " + nombreDivisa + ".\n Subtotal: " + subTotalCompra + ".\n Impuesto País: " + subTotalPaisCompra + ".\n Impuesto a la Ganancia: " + subTotalGananciaCompra + ".\n Total : " + totalCompra + " " + nombreDivisa + ".");
+}
+
+function calcularVenta(nombreDivisa, tasaCambio) {
+
+    console.log(nombreDivisa);
+    console.log(tasaCambio);
+
+    let subTotalCompra = cantidadDivisaCalcular.value * tasaCambio;
+
+    resumenCalculadora.innerText = ("\n Simulador de " + tipoOperacionArray[1].tipo + "\n\n Cantidad a Vender: " + cantidadDivisaCalcular.value + " " + nombreDivisa + ".\n Total : " + subTotalCompra + " Pesos.");
+}
+
+formCalculadora.addEventListener("submit", (event) => {
+
+    event.preventDefault();
+
+    if ((inputGroupSelect01.value !== "Elige el tipo de Divisa...") && (inputGroupSelect03.value !== "Elige el tipo de operación que deseas realizar...") && (cantidadDivisaCalcular.value !== "Ingrese la cantidad a consultar...")) {
+
+
+        if (inputGroupSelect03.value == (tipoOperacionArray[0].tipo)) {
+            if (isNaN(cantidadDivisaCalcular.value)) {
+                resumenCalculadora.innerText = ("\n Debes ingresar un número permitido");
+            } else {
+                compra();
+            }
+
+
+        } else if (inputGroupSelect03.value == (tipoOperacionArray[1].tipo)) {
+            venta();
         }
 
-    } while (isNaN(cantidadDivisaCompra));
-
-    console.log("Quieres Comprar " + cantidadDivisaCompra + " " + nombreDivisa);
-    alert("Quieres Comprar " + cantidadDivisaCompra + " " + nombreDivisa);
-
-
-
-    function menorQue(stockDeDivisa) {
-        return (cantidadDeDivisaCompra) => cantidadDeDivisaCompra <= stockDeDivisa
-    }
-
-    let menorQueCantidad = menorQue((stockDivisas[seleccionDivisaCompra-1].cantidad));
-
-    if (menorQueCantidad(cantidadDivisaCompra)) {
-
-        let subTotalCompra = cantidadDivisaCompra * tasaCambio;
-        console.log("El detalle de la operación es: \n" + "AR $ " + subTotalCompra.toString() + " + 30% de Impuesto País + 45% de Impuesto la Ganancia");
-        alert("El detalle de la operación es: \n" + "AR $ " + subTotalCompra.toString() + " + 30% de Impuesto País + 45% de Impuesto la Ganancia");
-
-        let subTotalPaisCompra = subTotalCompra * IMPUESTO_PAIS;
-        let subTotalGananciaCompra = subTotalCompra * IMPUESTO_GANANCIA;
-        let totalCompra = subTotalCompra + subTotalPaisCompra + subTotalGananciaCompra;
-
-        console.log("Datos de la Operación: \n" + fecha.toUTCString() + "\n" + clienteUno.nombre + " " + clienteUno.apellido + ", " + clienteUno.correo + ": \nEl total de la operación es de AR $" + totalCompra.toString());
-        alert("Datos de la Operación: \n" + fecha.toUTCString() + "\n" + clienteUno.nombre + " " + clienteUno.apellido + ", " + clienteUno.correo + ": \nEl total de la operación es de AR $" + totalCompra.toString());
-
-        console.log("Gracias por preferir a " + MARCA);
-        alert("Gracias por preferir a " + MARCA);
-
-
-
-        stockDivisas[seleccionDivisaCompra-1].cantidad = (stockDivisas[seleccionDivisaCompra-1].cantidad) - cantidadDivisaCompra;
-        console.log((stockDivisas[seleccionDivisaCompra-1].cantidad));
-
-
+        inputGroupSelect01.focus();
+        formCalculadora.reset();
 
     } else {
-        console.log("Lo máximo que puedes comprar en el día de hoy es " + (stockDivisas[0].cantidad) + " " + "Dólares");
-        alert("Lo máximo que puedes comprar en el día de hoy es " + (stockDivisas[0].cantidad) + " " + "Dólares");
+        resumenCalculadora.innerText = ("\n Debes seleccionar todos los campos e ingresar los datos correspondientes.");
+
+        inputGroupSelect01.focus();
+        formCalculadora.reset();
     }
 
+})
 
+// CAREERS - CALCULADORA - FIN
+
+// --------------------------------------------------------------------
+
+// CONTACT US - CONTÁCTANOS - INICIO
+
+class Contacto {
+    constructor(nombre, apellido, correo, mensaje) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.mensaje = mensaje;
+    }
+    toString() {
+        return this.nombre;
+    }
 }
 
+let formContacto = document.querySelector("#formContacto");
+let nombreContacto = document.querySelector("#nombreContacto");
+let apellidoContacto = document.querySelector("#apellidoContacto");
+let correoContacto = document.querySelector("#correoContacto");
+let exampleFormControlTextarea1 = document.querySelector("#exampleFormControlTextarea1");
+let resumenContacto = document.querySelector("#resumenContacto");
 
+// Guardando datos de formulario en el LocalStorage
 
+let usuarioContacto = JSON.parse(localStorage.getItem("UsuarioContacto")) ?? [];
 
-// FALTA ARREGLAR LA ARROW FUNCTION
-function calcularCambioVenta(nombreDivisa, tasaCambio) {
+if (usuarioContacto.length > 0) {
 
-    do {
-
-        cantidadDivisaVenta = parseFloat(prompt("Ingrese la cantidad expresada en números de la Divisa que deseas vender (Puedes usar decimales):"));
-
-        if (isNaN(cantidadDivisaVenta)) {
-            console.log("Solo puedes Ingresar un número");
-            alert("Solo puedes Ingresar un número");
-        }
-
-    } while (isNaN(cantidadDivisaVenta));
-
-
-    console.log("Quieres Vender " + cantidadDivisaVenta + " " + nombreDivisa);
-    alert("Quieres Vender " + cantidadDivisaVenta + " " + nombreDivisa);
-
-    let subTotalVenta = cantidadDivisaVenta * tasaCambio;
-    console.log("El detalle de la operación es: \n" + "AR $ " + subTotalVenta.toString());
-    alert("El detalle de la operación es: \n" + "AR $ " + subTotalVenta.toString());
-
-
-    console.log("Datos de la Operación: \n" + fecha.toUTCString() + "\n" + clienteUno.nombre + " " + clienteUno.apellido + ", " + clienteUno.correo + ": \nEn total recibirás AR $" + subTotalVenta.toString());
-    alert("Datos de la Operación: \n" + fecha.toUTCString() + "\n" + clienteUno.nombre + " " + clienteUno.apellido + ", " + clienteUno.correo + ": \nEn total recibirás AR $" + subTotalVenta.toString());
-
-    console.log("Gracias por preferir a " + MARCA);
-    alert("Gracias por preferir a " + MARCA);
-
+    resumenContacto.innerText = ("\nMuchas gracias por contactarnos. Si tu perfil encaja con nuestra búsqueda, te estaremos contactando." + "\n\n" + "Fecha: " + fecha.toLocaleDateString() + "\n" + "Nombre: " + (usuarioContacto.nombre).toUpperCase() + "\n" + "Apellido: " + (usuarioContacto.apellido).toUpperCase() + "\n" + "Correo Electrónico: " + (usuarioContacto.correo).toUpperCase() + "\n" + "Número de Teléfono: " + (usuarioContacto.mensaje));
 }
 
+formContacto.addEventListener("submit", (event) => {
 
+    event.preventDefault();
 
-// Llamado a la Función (Elegir Operación)
+    if ((nombreContacto.value !== "") && (apellidoContacto.value !== "") && (correoContacto.value !== "") && (exampleFormControlTextarea1.value !== "")) {
 
-elegirOperacion();
+        resumenContacto.innerText = ("\nMuchas gracias por escribirnos. Estaremos en contacto a la brevedad.");
 
-while (inicio !== 2) {
+        let usuarioContacto = new DatosCareers(nombreContacto.value, apellidoContacto.value, correoContacto.value, exampleFormControlTextarea1.value);
 
-    elegirOperacion();
+        // Guardando datos de formulario en el LocalStorage
 
-}
+        localStorage.setItem('UsuarioContacto', JSON.stringify(usuarioContacto));
 
+        nombreContacto.focus();
+        formContacto.reset();
 
+    } else {
+        resumenContacto.innerText = ("\nDebes introducir todos los datos correctamente.");
 
-// Llamado a la Función (Salida)
+        nombreContacto.focus();
+        formContacto.reset();
+    }
 
-salida();
+})

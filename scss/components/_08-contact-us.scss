@@ -1,0 +1,5 @@
+@import "./base/_variables";
+
+.padding--margin{
+    @extend %padding--margin;
+}

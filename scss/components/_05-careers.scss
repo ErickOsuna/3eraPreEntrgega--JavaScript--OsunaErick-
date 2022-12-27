@@ -1,0 +1,13 @@
+@import "./base/_variables";
+
+.padding--margin{
+    @extend %padding--margin;
+}
+
+.espacio{
+    margin: 2rem 0 1rem 0;
+}
+
+#botonDatosCareers{
+    margin: 1rem 0;
+}

@@ -1,0 +1,9 @@
+@import "./base/_variables";
+
+.hero{
+    background-color: red;
+}
+
+.padding--margin{
+    @extend %padding--margin;
+}
