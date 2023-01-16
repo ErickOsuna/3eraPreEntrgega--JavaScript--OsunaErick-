@@ -313,12 +313,8 @@ formCalculadora.addEventListener("submit", (event) => {
 
 
         if (inputGroupSelect03.value == (tipoOperacionArray[0].tipo)) {
-            if (isNaN(cantidadDivisaCalcular.value)) {
-                resumenCalculadora.innerText = ("\n Debes ingresar un número permitido");
-            } else {
-                compra();
-            }
 
+            isNaN(cantidadDivisaCalcular.value) ? resumenCalculadora.innerText = ("\n Debes ingresar un número permitido") : compra();
 
         } else if (inputGroupSelect03.value == (tipoOperacionArray[1].tipo)) {
             venta();
