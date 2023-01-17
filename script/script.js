@@ -8,16 +8,22 @@ const now = DateTime.now();
 // Creación del Constructor del Objeto DIVISA
 
 class Divisa {
+
     constructor(simbolo, nombre, precioCompra, precioVenta, stockDivisa) {
+
         this.simbolo = simbolo;
         this.nombre = nombre;
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
         this.stockDivisa = stockDivisa;
+
     }
     toString() {
+
         return this.nombre;
+
     }
+
 }
 
 // Declaración del Vector de las diferentes Divisas
@@ -98,15 +104,21 @@ octavaDivisa[3].innerText = listaDivisas[7].precioVenta;
 let fecha = new Date();
 
 class DatosCareers {
+
     constructor(nombre, apellido, correo, telefono) {
+
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
         this.telefono = telefono;
     }
+
     toString() {
+
         return this.nombre;
+
     }
+
 }
 
 let formDatosCareers = document.querySelector("#formDatosCareers");
@@ -138,11 +150,13 @@ formDatosCareers.addEventListener("submit", (event) => {
         // Agregando Alerta de SweetAlert
 
         Swal.fire({
+
             position: 'top-end',
             icon: 'success',
             title: 'Datos enviados correctamente.',
             showConfirmButton: false,
             timer: 2500
+
         })
 
         // Guardando datos de formulario en el LocalStorage
@@ -153,19 +167,31 @@ formDatosCareers.addEventListener("submit", (event) => {
         formDatosCareers.reset();
 
     } else {
+
         resumenDatosCareers.innerText = ("\nDebes introducir todos los datos correctamente.");
+
+        // Agregando SetTimeOut
+
+        setTimeout(() => {
+
+            resumenDatosCareers.innerText = "";
+
+        }, 5000);
 
         // Agregando Alerta de SweetAlert
 
         Swal.fire({
+
             icon: 'error',
             title: 'Error!',
             text: 'Debes introducir todos los datos correctamente.',
             timer: 2500
+
         })
 
         nombreDatosCareers.focus();
         formDatosCareers.reset();
+
     }
 
 })
@@ -213,12 +239,19 @@ pesoArgentinoCalculadora = listaDivisas[8].nombre;
 // Elegir tipo de operacion a realizar
 
 class Operacion {
+
     constructor(tipo) {
+
         this.tipo = tipo;
+
     }
+
     toString() {
+
         return this.tipo;
+
     }
+
 }
 
 let tipoOperacionArray = [];
@@ -250,6 +283,7 @@ function compra() {
     let seleccionDivisa = inputGroupSelect01.value;
 
     switch (seleccionDivisa) {
+
         case "Dólar":
             calcularCompra("Dólares", listaDivisas[0].precioCompra);
             break;
@@ -274,7 +308,9 @@ function compra() {
         case "Sol Peruano":
             calcularCompra("Sol Peruano", listaDivisas[7].precioCompra);
             break;
+
     }
+
 }
 
 function venta() {
@@ -282,6 +318,7 @@ function venta() {
     let seleccionDivisa = inputGroupSelect01.value;
 
     switch (seleccionDivisa) {
+
         case "Dólar":
             calcularVenta("Dólares", (listaDivisas[0].precioVenta));
             break;
@@ -306,7 +343,9 @@ function venta() {
         case "Sol Peruano":
             calcularVenta("Sol Peruano", (listaDivisas[7].precioVenta));
             break;
+
     }
+
 }
 
 function calcularCompra(nombreDivisa, tasaCambio) {
@@ -317,6 +356,7 @@ function calcularCompra(nombreDivisa, tasaCambio) {
     let totalCompra = subTotalCompra + subTotalPaisCompra + subTotalGananciaCompra;
 
     resumenCalculadora.innerText = ("\n Simulador de " + tipoOperacionArray[0].tipo + "\n\n Cantidad a comprar: " + cantidadDivisaCalcular.value + " " + nombreDivisa + ".\n Subtotal: " + subTotalCompra + ".\n Impuesto País: " + subTotalPaisCompra + ".\n Impuesto a la Ganancia: " + subTotalGananciaCompra + ".\n Total : " + totalCompra + " " + nombreDivisa + ".");
+
 }
 
 function calcularVenta(nombreDivisa, tasaCambio) {
@@ -327,6 +367,7 @@ function calcularVenta(nombreDivisa, tasaCambio) {
     let subTotalCompra = cantidadDivisaCalcular.value * tasaCambio;
 
     resumenCalculadora.innerText = ("\n Simulador de " + tipoOperacionArray[1].tipo + "\n\n Cantidad a Vender: " + cantidadDivisaCalcular.value + " " + nombreDivisa + ".\n Total : " + subTotalCompra + " Pesos.");
+
 }
 
 formCalculadora.addEventListener("submit", (event) => {
@@ -335,32 +376,43 @@ formCalculadora.addEventListener("submit", (event) => {
 
     if ((inputGroupSelect01.value !== "Elige el tipo de Divisa...") && (inputGroupSelect03.value !== "Elige el tipo de operación que deseas realizar...") && (cantidadDivisaCalcular.value !== "Ingrese la cantidad a consultar...")) {
 
-
         if (inputGroupSelect03.value == (tipoOperacionArray[0].tipo)) {
 
             isNaN(cantidadDivisaCalcular.value) ? resumenCalculadora.innerText = ("\n Debes ingresar un número permitido") : compra();
 
+            setTimeout(() => {
+
+                resumenCalculadora.innerText = "";
+    
+            }, 5000);
+
             // Agregando Alerta de SweetAlert
 
             Swal.fire({
+
                 icon: 'error',
                 title: 'Error!',
                 text: 'Debes ingresar un número permitido',
                 timer: 2500
+
             })
 
         } else if (inputGroupSelect03.value == (tipoOperacionArray[1].tipo)) {
+
             venta();
+
         }
 
         inputGroupSelect01.focus();
         formCalculadora.reset();
 
     } else {
+
         //     resumenCalculadora.innerText = ("\n Debes seleccionar todos los campos e ingresar los datos correspondientes.");
 
         //     inputGroupSelect01.focus();
         //     formCalculadora.reset();
+
     }
 
 })
@@ -372,14 +424,19 @@ formCalculadora.addEventListener("submit", (event) => {
 // CONTACT US - CONTÁCTANOS - INICIO
 
 class Contacto {
+
     constructor(nombre, apellido, correo, mensaje) {
+
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
         this.mensaje = mensaje;
+
     }
     toString() {
+
         return this.nombre;
+
     }
 }
 
@@ -397,6 +454,7 @@ let usuarioContacto = JSON.parse(localStorage.getItem("UsuarioContacto")) ?? [];
 if (usuarioContacto.length > 0) {
 
     resumenContacto.innerText = ("\nMuchas gracias por contactarnos. Si tu perfil encaja con nuestra búsqueda, te estaremos contactando." + "\n\n" + "Fecha: " + now.toLocaleString(DateTime.DATETIME_MED) + "\n" + "Nombre: " + (usuarioContacto.nombre).toUpperCase() + "\n" + "Apellido: " + (usuarioContacto.apellido).toUpperCase() + "\n" + "Correo Electrónico: " + (usuarioContacto.correo).toUpperCase() + "\n" + "Número de Teléfono: " + (usuarioContacto.mensaje));
+
 }
 
 formContacto.addEventListener("submit", (event) => {
@@ -409,14 +467,22 @@ formContacto.addEventListener("submit", (event) => {
 
         let usuarioContacto = new DatosCareers(nombreContacto.value, apellidoContacto.value, correoContacto.value, exampleFormControlTextarea1.value);
 
+        setTimeout(() => {
+
+            resumenContacto.innerText = "";
+
+        }, 5000);
+
         // Agregando Alerta de SweetAlert
 
         Swal.fire({
+
             position: 'top-end',
             icon: 'success',
             title: 'Datos enviados correctamente.',
             showConfirmButton: false,
             timer: 2500
+
         })
 
         // Guardando datos de formulario en el LocalStorage
@@ -427,18 +493,29 @@ formContacto.addEventListener("submit", (event) => {
         formContacto.reset();
 
     } else {
-        // resumenContacto.innerText = ("\nDebes introducir todos los datos correctamente.");
+
+        resumenContacto.innerText = ("\nDebes introducir todos los datos correctamente.");
+
+        setTimeout(() => {
+
+            resumenContacto.innerText = "";
+
+        }, 5000);
 
         // Agregando Alerta de SweetAlert
 
         Swal.fire({
+
             icon: 'error',
             title: 'Error!',
             text: 'Debes introducir todos los datos correctamente.',
             timer: 2500
+
         })
 
         nombreContacto.focus();
         formContacto.reset();
+
     }
+
 })
