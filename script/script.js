@@ -1,3 +1,8 @@
+// Declarando Variable de LUXON
+
+const DateTime = luxon.DateTime;
+const now = DateTime.now();
+
 // EXCHANGE - COTIZACIÓN - INICIO
 
 // Creación del Constructor del Objeto DIVISA
@@ -117,7 +122,7 @@ let postulante = JSON.parse(localStorage.getItem("Usuario")) ?? [];
 
 if (postulante.length > 0) {
 
-    resumenDatosCareers.innerText = ("\nMuchas gracias por contactarnos. Si tu perfil encaja con nuestra búsqueda, te estaremos contactando." + "\n\n" + "Fecha: " + fecha.toLocaleDateString() + "\n" + "Nombre: " + (postulante.nombre).toUpperCase() + "\n" + "Apellido: " + (postulante.apellido).toUpperCase() + "\n" + "Correo Electrónico: " + (postulante.correo).toUpperCase() + "\n" + "Número de Teléfono: " + (postulante.telefono));
+    resumenDatosCareers.innerText = ("\nMuchas gracias por contactarnos. Si tu perfil encaja con nuestra búsqueda, te estaremos contactando." + "\n\n" + "Fecha: " + now.toLocaleString(DateTime.DATETIME_MED) + "\n" + "Nombre: " + (postulante.nombre).toUpperCase() + "\n" + "Apellido: " + (postulante.apellido).toUpperCase() + "\n" + "Correo Electrónico: " + (postulante.correo).toUpperCase() + "\n" + "Número de Teléfono: " + (postulante.telefono));
 }
 
 formDatosCareers.addEventListener("submit", (event) => {
@@ -126,9 +131,19 @@ formDatosCareers.addEventListener("submit", (event) => {
 
     if ((nombreDatosCareers.value !== "") && (apellidoDatosCareers.value !== "") && (correoDatosCareers.value !== "") && (telefonoDatosCareers.value !== "")) {
 
-        resumenDatosCareers.innerText = ("\nMuchas gracias por contactarnos. Si tu perfil encaja con nuestra búsqueda, te estaremos contactando." + "\n\n" + "Fecha: " + fecha.toLocaleDateString() + "\n" + "Nombre: " + (nombreDatosCareers.value).toUpperCase() + "\n" + "Apellido: " + (apellidoDatosCareers.value).toUpperCase() + "\n" + "Correo Electrónico: " + (correoDatosCareers.value).toUpperCase() + "\n" + "Número de Teléfono: " + (telefonoDatosCareers.value));
+        resumenDatosCareers.innerText = ("\nMuchas gracias por contactarnos. Si tu perfil encaja con nuestra búsqueda, te estaremos contactando." + "\n\n" + "Fecha: " + now.toLocaleString(DateTime.DATETIME_MED) + "\n" + "Nombre: " + (nombreDatosCareers.value).toUpperCase() + "\n" + "Apellido: " + (apellidoDatosCareers.value).toUpperCase() + "\n" + "Correo Electrónico: " + (correoDatosCareers.value).toUpperCase() + "\n" + "Número de Teléfono: " + (telefonoDatosCareers.value));
 
         let postulante = new DatosCareers(nombreDatosCareers.value, apellidoDatosCareers.value, correoDatosCareers.value, telefonoDatosCareers.value);
+
+        // Agregando Alerta de SweetAlert
+
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Datos enviados correctamente.',
+            showConfirmButton: false,
+            timer: 2500
+        })
 
         // Guardando datos de formulario en el LocalStorage
 
@@ -139,6 +154,15 @@ formDatosCareers.addEventListener("submit", (event) => {
 
     } else {
         resumenDatosCareers.innerText = ("\nDebes introducir todos los datos correctamente.");
+
+        // Agregando Alerta de SweetAlert
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Debes introducir todos los datos correctamente.',
+            timer: 2500
+        })
 
         nombreDatosCareers.focus();
         formDatosCareers.reset();
@@ -316,6 +340,15 @@ formCalculadora.addEventListener("submit", (event) => {
 
             isNaN(cantidadDivisaCalcular.value) ? resumenCalculadora.innerText = ("\n Debes ingresar un número permitido") : compra();
 
+            // Agregando Alerta de SweetAlert
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'Debes ingresar un número permitido',
+                timer: 2500
+            })
+
         } else if (inputGroupSelect03.value == (tipoOperacionArray[1].tipo)) {
             venta();
         }
@@ -324,10 +357,10 @@ formCalculadora.addEventListener("submit", (event) => {
         formCalculadora.reset();
 
     } else {
-        resumenCalculadora.innerText = ("\n Debes seleccionar todos los campos e ingresar los datos correspondientes.");
+        //     resumenCalculadora.innerText = ("\n Debes seleccionar todos los campos e ingresar los datos correspondientes.");
 
-        inputGroupSelect01.focus();
-        formCalculadora.reset();
+        //     inputGroupSelect01.focus();
+        //     formCalculadora.reset();
     }
 
 })
@@ -363,7 +396,7 @@ let usuarioContacto = JSON.parse(localStorage.getItem("UsuarioContacto")) ?? [];
 
 if (usuarioContacto.length > 0) {
 
-    resumenContacto.innerText = ("\nMuchas gracias por contactarnos. Si tu perfil encaja con nuestra búsqueda, te estaremos contactando." + "\n\n" + "Fecha: " + fecha.toLocaleDateString() + "\n" + "Nombre: " + (usuarioContacto.nombre).toUpperCase() + "\n" + "Apellido: " + (usuarioContacto.apellido).toUpperCase() + "\n" + "Correo Electrónico: " + (usuarioContacto.correo).toUpperCase() + "\n" + "Número de Teléfono: " + (usuarioContacto.mensaje));
+    resumenContacto.innerText = ("\nMuchas gracias por contactarnos. Si tu perfil encaja con nuestra búsqueda, te estaremos contactando." + "\n\n" + "Fecha: " + now.toLocaleString(DateTime.DATETIME_MED) + "\n" + "Nombre: " + (usuarioContacto.nombre).toUpperCase() + "\n" + "Apellido: " + (usuarioContacto.apellido).toUpperCase() + "\n" + "Correo Electrónico: " + (usuarioContacto.correo).toUpperCase() + "\n" + "Número de Teléfono: " + (usuarioContacto.mensaje));
 }
 
 formContacto.addEventListener("submit", (event) => {
@@ -376,6 +409,16 @@ formContacto.addEventListener("submit", (event) => {
 
         let usuarioContacto = new DatosCareers(nombreContacto.value, apellidoContacto.value, correoContacto.value, exampleFormControlTextarea1.value);
 
+        // Agregando Alerta de SweetAlert
+
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Datos enviados correctamente.',
+            showConfirmButton: false,
+            timer: 2500
+        })
+
         // Guardando datos de formulario en el LocalStorage
 
         localStorage.setItem('UsuarioContacto', JSON.stringify(usuarioContacto));
@@ -384,10 +427,18 @@ formContacto.addEventListener("submit", (event) => {
         formContacto.reset();
 
     } else {
-        resumenContacto.innerText = ("\nDebes introducir todos los datos correctamente.");
+        // resumenContacto.innerText = ("\nDebes introducir todos los datos correctamente.");
+
+        // Agregando Alerta de SweetAlert
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Debes introducir todos los datos correctamente.',
+            timer: 2500
+        })
 
         nombreContacto.focus();
         formContacto.reset();
     }
-
 })
