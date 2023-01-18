@@ -14,9 +14,6 @@
 
 <body>
 
-
-
-
     <!-- HEADER - INICIO -->
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -58,9 +55,6 @@
     </nav>
 
     <!-- HEADER - FIN -->
-
-
-
 
     <!-- HERO SECTION - INICIO -->
 
@@ -453,43 +447,39 @@
 
     <!-- CONTACT US - FIN -->
 
-    <!-- <div class="title">
+    <div class="title">
 
         <h3>LOG IN / INGRESAR</h3>
 
-    </div> -->
+    </div>
 
     <!-- LOG IN - INICIO -->
 
-    <!-- <section class="padding--margin">
+    <section class="padding--margin" id="lista-usuarios">
 
-        <form>
+        <form id="formLogIn">
             <div class="form-group">
-                <label for="inputAddress">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                <label for="inputAddress">Nombre de Usuario: </label>
+                <input type="text" class="form-control" id="nombreLogIn" placeholder="Introduzca el nombre de usuario">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="inputEmail4">Email</label>
-                    <input type="email" class="form-control" id="inputEmail4">
+                    <label for="inputEmail4">Email: </label>
+                    <input type="email" class="form-control" id="correoLogIn"
+                        placeholder="Introduzca su correo electrónico">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="inputPassword4">Password</label>
-                    <input type="password" class="form-control" id="inputPassword4">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                    <label class="form-check-label" for="gridCheck">
-                        Check me out
-                    </label>
+                    <label for="inputPassword4">Password: </label>
+                    <input type="password" class="form-control" id="contraseniaLogIn"
+                        placeholder="Introduzca la contraseña">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Sign in</button>
         </form>
 
-    </section> -->
+        <p id="resumenLogIn"></p>
+
+    </section>
 
 
     <!-- LOG IN - FIN -->
@@ -558,6 +548,7 @@
 
     <!-- ENLACE SCRIPT.JS PROPIO - INICIO -->
 
+    <script src="./script/data.js"></script>
     <script src="./script/script.js"></script>
 
     <!-- ENLACE SCRIPT.JS PROPIO - INICIO -->

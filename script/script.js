@@ -355,7 +355,7 @@ function calcularCompra(nombreDivisa, tasaCambio) {
     let subTotalGananciaCompra = subTotalCompra * IMPUESTO_GANANCIA;
     let totalCompra = subTotalCompra + subTotalPaisCompra + subTotalGananciaCompra;
 
-    resumenCalculadora.innerText = ("\n Simulador de " + tipoOperacionArray[0].tipo + "\n\n Cantidad a comprar: " + cantidadDivisaCalcular.value + " " + nombreDivisa + ".\n Subtotal: " + subTotalCompra + ".\n Impuesto País: " + subTotalPaisCompra + ".\n Impuesto a la Ganancia: " + subTotalGananciaCompra + ".\n Total : " + totalCompra + " " + nombreDivisa + ".");
+    resumenCalculadora.innerText = ("\n Calculadora de " + tipoOperacionArray[0].tipo + "\n\n Cantidad a comprar: " + cantidadDivisaCalcular.value + " " + nombreDivisa + ".\n Subtotal: " + subTotalCompra.toFixed(1) + " Pesos Argentinos." + "\n Impuesto País: " + subTotalPaisCompra.toFixed(1) + " Pesos Argentinos." + "\n Impuesto a la Ganancia: " + subTotalGananciaCompra.toFixed(1) + " Pesos Argentinos." + ".\n Total a recibir: " + totalCompra.toFixed(1) + " Pesos Argentinos.");
 
 }
 
@@ -366,7 +366,7 @@ function calcularVenta(nombreDivisa, tasaCambio) {
 
     let subTotalCompra = cantidadDivisaCalcular.value * tasaCambio;
 
-    resumenCalculadora.innerText = ("\n Simulador de " + tipoOperacionArray[1].tipo + "\n\n Cantidad a Vender: " + cantidadDivisaCalcular.value + " " + nombreDivisa + ".\n Total : " + subTotalCompra + " Pesos.");
+    resumenCalculadora.innerText = ("\n Calculadora de " + tipoOperacionArray[1].tipo + "\n\n Cantidad a Vender: " + cantidadDivisaCalcular.value + " " + nombreDivisa + ".\n Total a recibir: " + subTotalCompra.toFixed(1) + " Pesos.");
 
 }
 
@@ -380,6 +380,41 @@ formCalculadora.addEventListener("submit", (event) => {
 
             isNaN(cantidadDivisaCalcular.value) ? resumenCalculadora.innerText = ("\n Debes ingresar un número permitido") : compra();
 
+            // Agregando Alerta de SweetAlert
+
+            Swal.fire({
+
+                position: 'top-end',
+                icon: 'success',
+                title: 'Datos enviados correctamente.',
+                showConfirmButton: false,
+                timer: 2500
+
+            })
+
+        } else if (inputGroupSelect03.value == (tipoOperacionArray[1].tipo)) {
+
+            venta();
+
+            Swal.fire({
+
+                position: 'top-end',
+                icon: 'success',
+                title: 'Datos enviados correctamente.',
+                showConfirmButton: false,
+                timer: 2500
+
+            })
+
+        }
+
+        inputGroupSelect01.focus();
+        formCalculadora.reset();
+
+    } else {
+
+            resumenCalculadora.innerText = ("\n Debes seleccionar todos los campos e ingresar los datos correspondientes.");
+
             setTimeout(() => {
 
                 resumenCalculadora.innerText = "";
@@ -392,26 +427,13 @@ formCalculadora.addEventListener("submit", (event) => {
 
                 icon: 'error',
                 title: 'Error!',
-                text: 'Debes ingresar un número permitido',
+                text: 'Debes seleccionar todos los campos e ingresar los datos correspondientes.',
                 timer: 2500
 
             })
 
-        } else if (inputGroupSelect03.value == (tipoOperacionArray[1].tipo)) {
-
-            venta();
-
-        }
-
-        inputGroupSelect01.focus();
-        formCalculadora.reset();
-
-    } else {
-
-        //     resumenCalculadora.innerText = ("\n Debes seleccionar todos los campos e ingresar los datos correspondientes.");
-
-        //     inputGroupSelect01.focus();
-        //     formCalculadora.reset();
+            inputGroupSelect01.focus();
+            formCalculadora.reset();
 
     }
 
