@@ -1,1 +1,9 @@
 @import "./base/_variables";
+
+
+.barra{
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
