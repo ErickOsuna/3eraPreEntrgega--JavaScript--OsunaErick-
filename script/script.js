@@ -625,9 +625,9 @@ let correoLogIn = document.querySelector("#correoLogIn");
 let contraseniaLogIn = document.querySelector("#contraseniaLogIn");
 let resumenLogIn = document.querySelector("#resumenLogIn");
 
-// Guardando datos de formulario en el SessionStorage
+// Guardando datos de formulario en el LocalStorage
 
-let usuarioIngresar = JSON.parse(sessionStorage.getItem("UsuarioMiembro")) ?? [];
+let usuarioIngresar = JSON.parse(localStorage.getItem("UsuarioMiembro")) ?? [];
 
 if (usuarioIngresar.length > 0) {
 
@@ -664,9 +664,9 @@ formLogIn.addEventListener("submit", (event) => {
 
         })
 
-        // Guardando datos de formulario en el SessionStorage
+        // Guardando datos de formulario en el LocalStorage
 
-        sessionStorage.setItem('UsuarioMiembro', JSON.stringify(usuarioIngresar));
+        localStorage.setItem('UsuarioMiembro', JSON.stringify(usuarioIngresar));
 
         nombreLogIn.focus();
         formLogIn.reset();
