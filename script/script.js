@@ -664,9 +664,9 @@ formLogIn.addEventListener("submit", (event) => {
 
         })
 
-        // Guardando datos de formulario en el LocalStorage
+        // Guardando datos de formulario en el SessionStorage
 
-        localStorage.setItem('UsuarioMiembro', JSON.stringify(usuarioIngresar));
+        sessionStorage.setItem('UsuarioMiembro', JSON.stringify(usuarioIngresar));
 
         nombreLogIn.focus();
         formLogIn.reset();
