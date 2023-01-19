@@ -627,7 +627,7 @@ let resumenLogIn = document.querySelector("#resumenLogIn");
 
 // Guardando datos de formulario en el LocalStorage
 
-let usuarioIngresar = JSON.parse(localStorage.getItem("UsuarioMiembro")) ?? [];
+let usuarioIngresar = JSON.parse(sessionStorage.getItem("UsuarioMiembro")) ?? [];
 
 if (usuarioIngresar.length > 0) {
 
@@ -664,9 +664,9 @@ formLogIn.addEventListener("submit", (event) => {
 
         })
 
-        // Guardando datos de formulario en el LocalStorage
+        // Guardando datos de formulario en el SessionStorage
 
-        localStorage.setItem('UsuarioMiembro', JSON.stringify(usuarioIngresar));
+        sessionStorage.setItem('UsuarioMiembro', JSON.stringify(usuarioIngresar));
 
         nombreLogIn.focus();
         formLogIn.reset();
