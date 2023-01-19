@@ -625,9 +625,9 @@ let correoLogIn = document.querySelector("#correoLogIn");
 let contraseniaLogIn = document.querySelector("#contraseniaLogIn");
 let resumenLogIn = document.querySelector("#resumenLogIn");
 
-// Guardando datos de formulario en el LocalStorage
+// Guardando datos de formulario en el SessionStorage
 
-let usuarioIngresar = JSON.parse(localStorage.getItem("UsuarioMiembro")) ?? [];
+let usuarioIngresar = JSON.parse(sessionStorage.getItem("UsuarioMiembro")) ?? [];
 
 if (usuarioIngresar.length > 0) {
 
