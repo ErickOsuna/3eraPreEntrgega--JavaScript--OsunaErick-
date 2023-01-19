@@ -3,7 +3,14 @@
 const DateTime = luxon.DateTime;
 const now = DateTime.now();
 
-// EXCHANGE - COTIZACIÓN - INICIO
+
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+                    // COTIZACIÓN - INICIO
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
 
 // Creación del Constructor del Objeto DIVISA
 
@@ -95,11 +102,23 @@ octavaDivisa[1].innerText = listaDivisas[7].nombre;
 octavaDivisa[2].innerText = listaDivisas[7].precioCompra;
 octavaDivisa[3].innerText = listaDivisas[7].precioVenta;
 
-// EXCHANGE - COTIZACIÓN - FIN
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+                    // COTIZACIÓN - FIN
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
 
 // ---------------------------------------------------------------------
 
-// CAREERS - TRABAJA CON NOSOTROS - INICIO
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+                    // TRABAJA CON NOSOTROS - INICIO
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
 
 let fecha = new Date();
 
@@ -196,11 +215,23 @@ formDatosCareers.addEventListener("submit", (event) => {
 
 })
 
-// CAREERS - TRABAJA CON NOSOTROS - FIN
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+                    // TRABAJA CON NOSOTROS - FIN
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
 
 // --------------------------------------------------------------------
 
-// CURRENCY CONVERTER - CALCULADORA - INICIO
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+                    // CALCULADORA - INICIO
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
 
 // Elegir tipo de divisa para operacion
 
@@ -355,7 +386,7 @@ function calcularCompra(nombreDivisa, tasaCambio) {
     let subTotalGananciaCompra = subTotalCompra * IMPUESTO_GANANCIA;
     let totalCompra = subTotalCompra + subTotalPaisCompra + subTotalGananciaCompra;
 
-    resumenCalculadora.innerText = ("\n Calculadora de " + tipoOperacionArray[0].tipo + "\n\n Cantidad a comprar: " + cantidadDivisaCalcular.value + " " + nombreDivisa + ".\n Subtotal: " + subTotalCompra.toFixed(1) + " Pesos Argentinos." + "\n Impuesto País: " + subTotalPaisCompra.toFixed(1) + " Pesos Argentinos." + "\n Impuesto a la Ganancia: " + subTotalGananciaCompra.toFixed(1) + " Pesos Argentinos." + ".\n Total a recibir: " + totalCompra.toFixed(1) + " Pesos Argentinos.");
+    resumenCalculadora.innerText = ("\n Calculadora de " + tipoOperacionArray[0].tipo + "\n\n Cantidad a comprar: " + cantidadDivisaCalcular.value + " " + nombreDivisa + ".\n Subtotal: " + subTotalCompra.toFixed(2) + " Pesos Argentinos." + "\n Impuesto País: " + subTotalPaisCompra.toFixed(2) + " Pesos Argentinos." + "\n Impuesto a la Ganancia: " + subTotalGananciaCompra.toFixed(2) + " Pesos Argentinos." + ".\n Total a recibir: " + totalCompra.toFixed(2) + " Pesos Argentinos.");
 
 }
 
@@ -366,7 +397,7 @@ function calcularVenta(nombreDivisa, tasaCambio) {
 
     let subTotalCompra = cantidadDivisaCalcular.value * tasaCambio;
 
-    resumenCalculadora.innerText = ("\n Calculadora de " + tipoOperacionArray[1].tipo + "\n\n Cantidad a Vender: " + cantidadDivisaCalcular.value + " " + nombreDivisa + ".\n Total a recibir: " + subTotalCompra.toFixed(1) + " Pesos.");
+    resumenCalculadora.innerText = ("\n Calculadora de " + tipoOperacionArray[1].tipo + "\n\n Cantidad a Vender: " + cantidadDivisaCalcular.value + " " + nombreDivisa + ".\n Total a recibir: " + subTotalCompra.toFixed(2) + " Pesos.");
 
 }
 
@@ -394,7 +425,7 @@ formCalculadora.addEventListener("submit", (event) => {
 
         } else if (inputGroupSelect03.value == (tipoOperacionArray[1].tipo)) {
 
-            venta();
+            isNaN(cantidadDivisaCalcular.value) ? resumenCalculadora.innerText = ("\n Debes ingresar un número permitido") : venta();
 
             Swal.fire({
 
@@ -413,37 +444,49 @@ formCalculadora.addEventListener("submit", (event) => {
 
     } else {
 
-            resumenCalculadora.innerText = ("\n Debes seleccionar todos los campos e ingresar los datos correspondientes.");
+        resumenCalculadora.innerText = ("\n Debes seleccionar todos los campos e ingresar los datos correspondientes.");
 
-            setTimeout(() => {
+        setTimeout(() => {
 
-                resumenCalculadora.innerText = "";
-    
-            }, 5000);
+            resumenCalculadora.innerText = "";
 
-            // Agregando Alerta de SweetAlert
+        }, 5000);
 
-            Swal.fire({
+        // Agregando Alerta de SweetAlert
 
-                icon: 'error',
-                title: 'Error!',
-                text: 'Debes seleccionar todos los campos e ingresar los datos correspondientes.',
-                timer: 2500
+        Swal.fire({
 
-            })
+            icon: 'error',
+            title: 'Error!',
+            text: 'Debes seleccionar todos los campos e ingresar los datos correspondientes.',
+            timer: 2500
 
-            inputGroupSelect01.focus();
-            formCalculadora.reset();
+        })
+
+        inputGroupSelect01.focus();
+        formCalculadora.reset();
 
     }
 
 })
 
-// CAREERS - CALCULADORA - FIN
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+                    // CALCULADORA - FIN
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
 
 // --------------------------------------------------------------------
 
-// CONTACT US - CONTÁCTANOS - INICIO
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+                    // CONTÁCTANOS - INICIO
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
 
 class Contacto {
 
@@ -541,3 +584,128 @@ formContacto.addEventListener("submit", (event) => {
     }
 
 })
+
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+                    // COTÁCTANOS - FIN
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+
+// --------------------------------------------------------------------
+
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+                    // INGRESAR - INICIO
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+
+class Miembro {
+
+    constructor(nombre, correo, contrasenia) {
+
+        this.nombre = nombre;
+        this.correo = correo;
+        this.contrasenia = contrasenia;
+
+    }
+    toString() {
+
+        return this.nombre;
+
+    }
+}
+
+let formLogIn = document.querySelector("#formLogIn");
+let nombreLogIn = document.querySelector("#nombreLogIn");
+let correoLogIn = document.querySelector("#correoLogIn");
+let contraseniaLogIn = document.querySelector("#contraseniaLogIn");
+let resumenLogIn = document.querySelector("#resumenLogIn");
+
+// Guardando datos de formulario en el LocalStorage
+
+let usuarioIngresar = JSON.parse(localStorage.getItem("UsuarioMiembro")) ?? [];
+
+if (usuarioIngresar.length > 0) {
+
+    resumenLogIn.innerText = ("\nBienvenido." + "\n\n" + "Fecha: " + now.toLocaleString(DateTime.DATETIME_MED) + "\n" + "Nombre: " + (usuarioIngresar.nombre).toUpperCase() + "\n" + "Apellido: " + (usuarioIngresar.correo).toUpperCase() + "\n" + "Correo Electrónico: ");
+
+}
+
+formLogIn.addEventListener("submit", (event) => {
+
+    event.preventDefault();
+
+    if ((nombreLogIn.value !== "") && (correoLogIn.value !== "") && (contraseniaLogIn.value !== "")) {
+
+
+        resumenLogIn.innerText = ("\nBIENVENIDO");
+
+        let usuarioIngresar = new Miembro(nombreLogIn.value, correoLogIn.value, contraseniaLogIn.value);
+
+        setTimeout(() => {
+
+            resumenLogIn.innerText = "";
+
+        }, 5000);
+
+        // Agregando Alerta de SweetAlert
+
+        Swal.fire({
+
+            position: 'top-end',
+            icon: 'success',
+            title: 'Datos enviados correctamente.',
+            showConfirmButton: false,
+            timer: 2500
+
+        })
+
+        // Guardando datos de formulario en el LocalStorage
+
+        localStorage.setItem('UsuarioMiembro', JSON.stringify(usuarioIngresar));
+
+        nombreLogIn.focus();
+        formLogIn.reset();
+
+    } else {
+
+        resumenLogIn.innerText = ("\nDebes introducir todos los datos correctamente.");
+
+        setTimeout(() => {
+
+            resumenLogIn.innerText = "";
+
+        }, 5000);
+
+        // Agregando Alerta de SweetAlert
+
+        Swal.fire({
+
+            icon: 'error',
+            title: 'Error!',
+            text: 'Debes introducir todos los datos correctamente.',
+            timer: 2500
+
+        })
+
+        nombreLogIn.focus();
+        formLogIn.reset();
+
+    }
+
+})
+
+/* La idea era usar la base de datos de la API para compararlo con los datos que ingresara el usuario... Si el nombre, correo electrónico y el número telefónico que sería usado como password coincidían, se imprimiera el en DOM un mensaje de Bienvenida..... Solo que no supe cómo usar esos datos desde la base de datos... Sé que están funcionando porque están impresos en el DOM y en la consola. Pero no sé como manipularos con el documento principal de JS.
+Espero pueda comprender y de ser posible ayudarme a solucionar ese problema.*/
+
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+                    // INGRESAR - FIN
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
